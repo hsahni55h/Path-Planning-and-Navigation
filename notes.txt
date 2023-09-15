@@ -1,0 +1,42 @@
+Approaches to Path Planning
+---------------------------
+
+Three different approaches to path planning. 
+
+1. discrete (or combinatorial) path planning, is the most straightforward of the three approaches. 
+2. sample-based path planning 
+3. probabilistic path planning
+both will build on the foundation of discrete planning to develop more widely applicable path planning solutions.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Discrete Planning:
+
+Discrete planning looks to explicitly discretize the robot’s workspace into a connected graph, and apply a graph-search algorithm to calculate the best path. 
+This procedure is very precise (in fact, the precision can be adjusted explicitly by changing how fine you choose to discretize the space) and very thorough, as it discretizes the complete workspace. 
+As a result, discrete planning can be very computationally expensive - possibly prohibitively so for large path planning problems.
+Discrete path planning is elegant in its preciseness, but is best suited for low-dimensional problems. For high-dimensional problems, sample-based path planning is a more appropriate approach.
+
+three steps:
+1. develop a continuous representation 
+2. configuration space must be discretized
+3. graph search
+
+Minkowski Sum
+The Minkowski sum is a mathematical property that can be used to compute the configuration space given an obstacle geometry and robot geometry.
+The intuition behind how the Minkowski sum is calculated can be understood by imagining to paint the outside of an obstacle using a paintbrush that is shaped like your robot, with the robot’s origin as the tip of the paintbrush.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Sample-Based Planning:
+
+Sample-based path planning probes the workspace to incrementally construct a graph. 
+Instead of discretizing every segment of the workspace, sample-based planning takes a number of samples and uses them to build a discrete representation of the workspace. 
+The resultant graph is not as precise as one created using discrete planning, but it is much quicker to construct because of the relatively small number of samples used.
+A path generated using sample-based planning may not be the best path, but in certain applications - it’s better to generate a feasible path quickly than to wait hours or even days to generate the optimal path.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Probabilistic Path Planning:
+
+While the first two approaches looked at the path planning problem generically - with no understanding of who or what may be executing the actions - probabilistic path planning takes into account the uncertainty of the robot’s motion.
+While this may not provide significant benefits in some environments, it is especially helpful in highly-constrained environment or environments with sensitive or high-risk areas.
+
