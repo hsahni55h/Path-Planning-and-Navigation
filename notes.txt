@@ -181,7 +181,6 @@ Attractive Potential Field
 The attractive potential field is a function with the global minimum at the goal configuration. If a robot is placed at any point and required to follow the direction of steepest descent, it will end up at the goal configuration. 
 This function does not need to be complicated, a simple quadratic function can achieve all of the requirements discussed above.
 
-
 f_att(x) = ν_att(∣∣x−x_goal∣∣)^2
  
 Where x represents the robot’s current position, and x_goal the goal position, ν is a scaling factor.
@@ -204,7 +203,6 @@ Past ρ0, the potential field is zero. Within a ρ0 distance of the obstacle, th
 ​Potential Field Sum
 The attractive and repulsive functions are summed to produce the potential field that is used to guide the robot from anywhere in the space to the goal.
 
-
 Problems with the Potential Field Method
 ----------------------------------------
 The potential field method is not without its faults - the method is neither complete nor optimal. 
@@ -215,3 +213,29 @@ In addition, potential field does not take into consideration the cost of every 
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+Graph Search
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Uninformed vs Informed Search
+
+Uninformed search algorithms are not provided with any information about the whereabouts of the goal, and thus search blindly. 
+The only difference between different uninformed algorithms is the order in which they expand nodes. 
+Several different types of uninformed algorithms are listed below:
+
+--> Breadth-first Search
+--> Depth-first Search
+--> Uniform Cost Search
+
+Informed searches, on the other hand, are provided with information pertaining to the location of the goal. 
+As a result, these search algorithms are able to evaluate some nodes to be more promising than others. 
+This makes their search more efficient. 
+
+--> A* Search
+
+there are a few others that you should know before starting to learn individual graph search algorithms.
+
+The time complexity of an algorithm assesses how long it takes an algorithm to generate a path, usually with respect to the number of nodes or dimensions present. It can also refer to the trade-off between quality of an algorithm (ex. completeness) vs its computation time.
+
+The space complexity of an algorithm assesses how much memory is required to execute the search. Some algorithms must keep significant amounts of information in memory throughout their run-time, while others can get away with very little.
+
+The generality of an algorithm considers the type of problems that the algorithm can solve - is it limited to very specific types of problems, or will the algorithm perform well in a broad range of problems?
