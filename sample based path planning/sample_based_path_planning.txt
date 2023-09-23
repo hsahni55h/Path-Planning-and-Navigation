@@ -35,7 +35,7 @@ Instead, it samples the configuration space randomly (or semi-randomly) to build
 The resultant graph is not as precise as one created using combinatorial planning, but it is much quicker to construct because of the relatively small number of samples used.
 Such a method is probabilistically complete because as time passes and the number of samples approaches infinity, the probability of finding a path, if one exists, approaches 1.
 Such an approach is very effective in high-dimensional spaces, however it does have some downfalls. Sampling a space uniformly is not likely to reach small or narrow areas. 
-It is critical that a sufficient number of samples to go from star to goal, or the algorithm will return ‘no solution found’ to a problem that clearly has a solution.
+It is critical that a sufficient number of samples to go from start to goal, or the algorithm will return ‘no solution found’ to a problem that clearly has a solution.
 
 Different sample-based planning approaches exist, each with their own benefits and downfalls. 
 

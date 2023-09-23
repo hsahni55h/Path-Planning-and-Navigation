@@ -43,7 +43,8 @@ However, more powerful planners may be required in certain problems. In such a c
 Sample-based path planning algorithms are probabilistically complete. As the number of iterations approaches infinity, the graph approaches completeness and the optimal path through the graph approaches the optimal path in reality.
 
 
-The Learning Phase takes significantly longer to implement than the Query Phase, which only has to connect the start and goal nodes, and then search for a path. However, the graph created by the Learning Phase can be reused for many subsequent queries. For this reason, PRM is called a multi-query planner.
+The Learning Phase takes significantly longer to implement than the Query Phase, which only has to connect the start and goal nodes, and then search for a path. 
+However, the graph created by the Learning Phase can be reused for many subsequent queries. For this reason, PRM is called a multi-query planner.
 
 PRM is a Multi-Query Planner
 This is very beneficial in static or mildly-changing environments. 
