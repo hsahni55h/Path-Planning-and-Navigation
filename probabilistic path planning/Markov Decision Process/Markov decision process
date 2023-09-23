@@ -1,0 +1,23 @@
+The robot had a non-deterministic transition model (sometimes called the one-step dynamics). 
+This means that an action cannot guarantee to lead a robot from one state to another state. 
+Instead, there is a probability associated with resulting in each state.
+
+MDP Definition
+A Markov Decision Process is defined by:
+
+A set of states: S,
+Initial state: s0,
+A set of actions: A,
+The transition model: T(s,a,s'),
+A set of rewards: R.
+The transition model is the probability of reaching a state s′ from a state s by executing action a. It is often written as T(s,a,s′).
+
+The Markov assumption states that the probability of transitioning from s to s′ is only dependent on the present state, s, and not on the path taken to get to s.
+
+One notable difference between MDPs in probabilistic path planning and MDPs in reinforcement learning, is that in path planning the robot is fully aware of all of the items listed above (state, actions, transition model, rewards). Whereas in RL, the robot was aware of its state and what actions it had available, but it was not aware of the rewards or the transition model.
+
+----------------------------------------------------------------------
+Policies
+
+a solution to a Markov Decision Process is called a policy, and is denoted with the letter π. A policy is a mapping from states to actions. For every state, a policy will inform the robot of which action it should take.
+An optimal policy, denoted π∗, informs the robot of the best action to take from any state, to maximize the overall reward. 
