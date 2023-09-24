@@ -111,7 +111,9 @@ void search(Map map, Planner planner)
             sort(open.begin(), open.end());
             reverse(open.begin(), open.end());
 
-            vector <int> next;
+            vector <int> next{3};
+            next = open.back();
+            open.pop_back();
             x = static_cast<size_t>(next[1]);
             y = static_cast<size_t>(next[2]);
             g = next[0];
