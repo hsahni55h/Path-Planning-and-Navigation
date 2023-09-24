@@ -28,6 +28,8 @@ The Cost of Movement value indicates how much it cost to move from one cell to a
 */
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Implemented the BFS: Expansion List
+
 #include <iostream>
 #include <string.h>
 #include <vector>
