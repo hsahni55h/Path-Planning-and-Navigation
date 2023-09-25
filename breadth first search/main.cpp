@@ -72,8 +72,8 @@ public:
 template <typename T>
 void print2DVector(T Vec)
 {
-    for (int i = 0; i < Vec.size(); ++i) {
-        for (int j = 0; j < Vec[0].size(); ++j) {
+    for (size_t i = 0; i < Vec.size(); ++i) {
+        for (size_t j = 0; j < Vec[0].size(); ++j) {
             cout << Vec[i][j] << ' ';
         }
         cout << endl;
@@ -87,6 +87,9 @@ void search(Map map, Planner planner)
     vector<vector<int>> closed(map.mapHeight, vector<int> (map.mapWidth));
     closed[planner.start[0]][planner.start[1]] = 1;                             // marking the visited nodes
 
+
+    vector<vector<int>> expansion(map.mapHeight, vector<int> (map.mapWidth, -1));
+
     size_t x = planner.start[0];
     size_t y = planner.start[1];
     int g = 0;
@@ -96,6 +99,7 @@ void search(Map map, Planner planner)
 
     bool found = false;
     bool empty = false;
+    int count = 0;
 
     size_t x2;
     size_t y2;
@@ -119,6 +123,9 @@ void search(Map map, Planner planner)
             x = static_cast<size_t>(next[1]);
             y = static_cast<size_t>(next[2]);
             g = next[0];
+
+            expansion[x][y] = count;
+            count = count + 1; 
             
             if (x == static_cast<size_t>(planner.goal[0]) && y == static_cast<size_t>(planner.goal[1]))
             {
@@ -146,6 +153,7 @@ void search(Map map, Planner planner)
             };
         };
     };
+    print2DVector(expansion);
 };
 
 int main()
