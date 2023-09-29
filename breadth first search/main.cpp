@@ -90,6 +90,8 @@ void search(Map map, Planner planner)
 
     vector<vector<int>> expansion(map.mapHeight, vector<int> (map.mapWidth, -1));
 
+    // vector<vector<int>> action(map.mapHeight, vector<int> (map.mapWidth, -1));
+
     size_t x = planner.start[0];
     size_t y = planner.start[1];
     int g = 0;
@@ -146,6 +148,7 @@ void search(Map map, Planner planner)
                             int g2 = g + planner.cost;
                             open.push_back({ g2, static_cast<int>(x2), static_cast<int>(y2)});
                             closed[x2][y2] = 1;
+                            // action[x2][y2] = i;
                         };
                     };
                 };
@@ -153,7 +156,26 @@ void search(Map map, Planner planner)
             };
         };
     };
-    print2DVector(expansion);
+    // // print2DVector(closed);
+    // cout<<"----------------------"<< endl;
+    // print2DVector(action);
+    // cout<<"--------------"<< endl;
+    // print2DVector(expansion);
+
+    // vector<vector<string> > policy(map.mapHeight, vector<string>(map.mapWidth, "-"));
+
+    // x = planner.goal[0];
+    // y = planner.goal[1];
+    // policy[x][y] = '*';
+
+    // // while(x != planner.start[0] or y != planner.start[1])
+    // // {
+    // //     x2 = x - planner.movements[action[x][y]][0];
+    // //     y2 = y - planner.movements[action[x][y]][1];
+    // //     policy[x2][y2] = planner.movements_arrows[action[x][y]];
+    // //     x = x2;
+    // //     y = y2;
+    // // }
 };
 
 int main()
