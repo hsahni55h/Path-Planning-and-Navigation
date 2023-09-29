@@ -1,3 +1,8 @@
+# BFS, Breadth-First Search, is a vertex-based technique for finding the shortest path in the graph. 
+# It uses a Queue data structure that follows first in first out. 
+# In BFS, one vertex is selected at a time when it is visited and marked then its adjacent are visited and stored in the queue.
+
+
 graph = {
   '5' : ['3','7'],
   '3' : ['2', '4'],
