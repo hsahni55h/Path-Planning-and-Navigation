@@ -47,7 +47,7 @@ def dijkstra_algorithm(graph, start_node):
         shortest_path[node] = max_value
     
     shortest_path[start_node] = 0
-    
+     
     while unvisited_nodes:
         current_min_node = None
         for node in unvisited_nodes:
