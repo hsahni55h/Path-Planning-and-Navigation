@@ -84,21 +84,26 @@ void print2DVector(T Vec)
 // You are only required to print the final triplet values
 void search(Map map, Planner planner)
 {
+    // Create a closed 2 array filled with 0s and first element 1
     vector<vector<int>> closed(map.mapHeight, vector<int> (map.mapWidth));
     closed[planner.start[0]][planner.start[1]] = 1;                             // marking the visited nodes
 
-
+    // Create expand array filled with -1
     vector<vector<int>> expansion(map.mapHeight, vector<int> (map.mapWidth, -1));
 
-    // vector<vector<int>> action(map.mapHeight, vector<int> (map.mapWidth, -1));
+    // Create action array filled with -1
+    vector<vector<int>> action(map.mapHeight, vector<int> (map.mapWidth, -1));
 
+    // Defined the triplet values
     size_t x = planner.start[0];
     size_t y = planner.start[1];
     int g = 0;
 
+    // Store the expansions
     vector<vector<int>> open;
     open.push_back({g, static_cast<int>(x), static_cast<int>(y)});
 
+    // Flags and counters
     bool found = false;
     bool empty = false;
     int count = 0;
@@ -106,35 +111,44 @@ void search(Map map, Planner planner)
     size_t x2;
     size_t y2;
 
+
+    // While I am still searching for the goal and the problem is solvable
     while(!found && !empty)
     {
+        // Resign if no values in the open list and you can't expand anymore
         if (open.size() == 0)
         {
             empty = true;
             cout << "Failed to reach a goal" << endl;
         }
 
+        // Keep expanding
         else
         {
+            // Remove triplets from the open list
             sort(open.begin(), open.end());
             reverse(open.begin(), open.end());
 
             vector <int> next{3};
+            // Stored the poped value into next
             next = open.back();
             open.pop_back();
             x = static_cast<size_t>(next[1]);
             y = static_cast<size_t>(next[2]);
             g = next[0];
 
+            // Fill the expand vectors with count
             expansion[x][y] = count;
             count = count + 1; 
             
+            // Check if we reached the goal:
             if (x == static_cast<size_t>(planner.goal[0]) && y == static_cast<size_t>(planner.goal[1]))
             {
                 found = true;
                 cout << "[" << g << ", " << x << ", " << y << "]" << endl;
             }
 
+            //else expand new elements
             else
             {
                 for(size_t i = 0; i < planner.movements.size(); i++)
@@ -148,7 +162,7 @@ void search(Map map, Planner planner)
                             int g2 = g + planner.cost;
                             open.push_back({ g2, static_cast<int>(x2), static_cast<int>(y2)});
                             closed[x2][y2] = 1;
-                            // action[x2][y2] = i;
+                            action[x2][y2] = i;
                         };
                     };
                 };
@@ -156,26 +170,31 @@ void search(Map map, Planner planner)
             };
         };
     };
-    // // print2DVector(closed);
+    print2DVector(closed);
     // cout<<"----------------------"<< endl;
-    // print2DVector(action);
-    // cout<<"--------------"<< endl;
-    // print2DVector(expansion);
+    print2DVector(action);
+    cout<<"--------------"<< endl;
 
-    // vector<vector<string> > policy(map.mapHeight, vector<string>(map.mapWidth, "-"));
+    // Print the expansion List
+    print2DVector(expansion);
 
-    // x = planner.goal[0];
-    // y = planner.goal[1];
-    // policy[x][y] = '*';
+    // Find the path with robot orientation
+    vector<vector<string> > policy(map.mapHeight, vector<string>(map.mapWidth, "-"));
 
-    // // while(x != planner.start[0] or y != planner.start[1])
-    // // {
-    // //     x2 = x - planner.movements[action[x][y]][0];
-    // //     y2 = y - planner.movements[action[x][y]][1];
-    // //     policy[x2][y2] = planner.movements_arrows[action[x][y]];
-    // //     x = x2;
-    // //     y = y2;
-    // // }
+    x = planner.goal[0];
+    y = planner.goal[1];
+    policy[x][y] = '*';
+
+    while(x != planner.start[0] or y != planner.start[1])
+    {
+        x2 = x - planner.movements[action[x][y]][0];
+        y2 = y - planner.movements[action[x][y]][1];
+        policy[x2][y2] = planner.movements_arrows[action[x][y]];
+        x = x2;
+        y = y2;
+    }
+    // Print the path with arrows
+    print2DVector(policy);
 };
 
 int main()
